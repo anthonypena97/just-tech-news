@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User, Post, Vote, Comment } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // GET /api/users
 router.get('/', (req, res) => {
@@ -80,7 +81,7 @@ router.post('/', (req, res) => {
 });
 
 // PUT /api/users/1
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     // expects {username: 'Lernantino', email: 'lernantino@gmail.com', 'password1234'}
 
     // if req.body has exact key/value pairs to match the model, you can use `req.body` instead
